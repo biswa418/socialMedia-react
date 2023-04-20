@@ -1,5 +1,5 @@
 <div align="center">
-      <h1> <img src=" " width="80px"><br/>socialMedia-react</h1>
+      <h1> socialMedia-react</h1>
      </div>
 
 
