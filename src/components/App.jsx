@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getPost } from '../api';
+import { Home } from '../pages';
 
 function App() {
   useEffect(() => {
@@ -14,7 +15,7 @@ function App() {
 
   return (
     <>
-      <div className='border-2 border-sky-500'>Hello world</div>
+      <Home />
     </>
   )
 }
