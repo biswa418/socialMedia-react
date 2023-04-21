@@ -1,7 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getPost } from '../api';
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    async function loadPost() {
+      const posts = await getPost();
+
+      console.log(posts);
+    }
+
+    loadPost();
+  }, []);
 
   return (
     <>
