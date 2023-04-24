@@ -5,7 +5,7 @@ const Navbar = () => {
             <div className='leftDiv '>
                 <a className='flex items-center' href='/'>
                     <span className='text-yellow-400 text-5xl mt-2'>&lt;</span>
-                    <h1 className='text-white text-4xl'>codeial</h1>
+                    <h1 className='text-white text-4xl'>DevConnect</h1>
                     <span className='text-yellow-400 text-3xl mt-1'>&nbsp;/</span>
                     <span className='text-yellow-400 text-5xl mt-1 ms-[-4px]'>&gt;</span>
                 </a>
