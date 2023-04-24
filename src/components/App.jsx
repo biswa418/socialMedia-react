@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getPost } from '../api';
 import { Home } from '../pages';
-import Loader from './Loader';
+import { Loader, Navbar } from './';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -29,6 +29,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Home posts={posts} />
     </>
   )
