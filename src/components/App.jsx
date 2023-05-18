@@ -1,46 +1,16 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { getPost } from '../api';
 import { Home, Login, Page404 } from '../pages';
 import { Loader, Navbar } from './';
+import { useAuth } from '../hooks';
 
 
-const About = () => {
-  return (
-    <h1>
-      About
-    </h1>
-  )
-}
-
-const UserInfo = () => {
-  return (
-    <h1>
-      User
-    </h1>
-  )
-}
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [loader, setLoading] = useState(true);
+  const auth = useAuth();
 
-  useEffect(() => {
-    async function loadPost() {
-      const posts = await getPost();
-
-      if (posts.success) {
-        setPosts(posts.data.posts);
-      }
-
-      setLoading(false);
-    }
-
-    loadPost();
-  }, []);
-
-  if (loader) {
+  if (auth.loading) {
     return <Loader />
   }
 
@@ -51,10 +21,8 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home posts={posts} />} />
+          <Route path='/' element={<Home posts={[]} />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/users/afafa' element={<UserInfo />} />
 
           <Route path='*' element={<Page404 />} />
         </Routes>

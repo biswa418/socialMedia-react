@@ -7,7 +7,7 @@ export const getFromLocalStorage = (key) => {
         return console.error('No key given to extract');
     }
 
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
 }
 
 

@@ -1,6 +1,32 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-const Home = ({ posts }) => {
+import { useEffect, useState } from "react";
+import { getPost } from '../api';
+import { Loader } from "../components";
+
+const Home = () => {
+    const [posts, setPosts] = useState([]);
+    const [loader, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadPost() {
+            const allPosts = await getPost();
+
+            if (allPosts.success) {
+                setPosts(allPosts.data.posts);
+            }
+
+            setLoading(false);
+        }
+
+        loadPost();
+    }, []);
+
+
+    if (loader) {
+        return <Loader />
+    }
+
     return (
         <div className='w-11/12 mx-auto'>
             {posts.map(post => {
@@ -66,8 +92,8 @@ const Home = ({ posts }) => {
     );
 };
 
-Home.propTypes = {
-    posts: PropTypes.array.isRequired
-}
+// Home.propTypes = {
+//     posts: PropTypes.array.isRequired
+// }
 
 export default Home;
