@@ -23,4 +23,4 @@ export const API_URLS = {
 };
 
 
-export const LOCALSTORAGE_TOKEN_KEY = '__codeial_token__'; 
+export const LOCALSTORAGE_TOKEN_KEY = '__devconnect_token__'; 
