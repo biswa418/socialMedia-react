@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
-import { login } from '../api';
+import { useAuth } from '../hooks'
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+    const auth = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoggedIn(true);
         const loadId = toast.loading('Loggin in..');
 
-        const response = await login(email, password);
+        const response = await auth.login(email, password);
 
         if (response.success) {
             toast.success('Successfully logged in', {

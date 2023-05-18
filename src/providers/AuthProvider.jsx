@@ -8,7 +8,7 @@ const initialState = {
     loading: true,
 }
 
-const AuthContext = createContext(initialState);
+export const AuthContext = createContext(initialState);
 
 export const AuthProvider = ({ children }) => {
     const auth = useProvideAuth()
