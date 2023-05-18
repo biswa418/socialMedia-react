@@ -9,7 +9,7 @@ const Home = ({ posts }) => {
                         <div className='flex items-center'>
                             <img
                                 className='h-[50px]'
-                                src="/public/man.png"
+                                src="/man.png"
                                 alt="user-pic"
                             />
                             <div className='flex flex-col pl-[12px]'>
@@ -23,7 +23,7 @@ const Home = ({ posts }) => {
                             <div className='flex items-center'>
                                 <img
                                     className='h-4 cursor-pointer'
-                                    src="/public/like.svg"
+                                    src="/like.svg"
                                     alt="likes-icon"
                                 />
                                 <span className='ml-2'>{post.likes.length}</span>
@@ -32,7 +32,7 @@ const Home = ({ posts }) => {
                             <div className='ml-4 flex items-center'>
                                 <img
                                     className='h-4 cursor-pointer'
-                                    src="/public/chat.png"
+                                    src="/chat.png"
                                     alt="comments-icon"
                                 />
                                 <span className='ml-2'>{post.comments.length}</span>
