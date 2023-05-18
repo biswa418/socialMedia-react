@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 import { useAuth } from '../hooks'
 
-const Login = () => {
+const Signup = () => {
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setconfirmPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
     const auth = useAuth();
 
@@ -31,7 +33,16 @@ const Login = () => {
             <img className='w-full md:w-1/2' src='./login.png' alt='login' />
 
             <div className='md:px-8 w-full flex flex-col justify-center'>
-                <h2 className='md:text-2xl text-blue-400 font-bold'>Hi Dev, Sign in!</h2>
+                <h2 className='md:text-2xl text-blue-400 font-bold'>New Dev? Sign Up!</h2>
+
+                <div className='w-full my-2'>
+                    <input className='w-full text-slate-500 outline-gray-300 text-lg p-2 rounded-md'
+                        type='text'
+                        placeholder='Name'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required />
+                </div>
 
                 <div className='w-full my-2'>
                     <input className='w-full text-slate-500 outline-gray-300 text-lg p-2 rounded-md'
@@ -51,9 +62,18 @@ const Login = () => {
                         required />
                 </div>
 
+                <div className='my-2'>
+                    <input className='w-full text-slate-500 outline-gray-300 text-lg p-2 rounded-md'
+                        type='password'
+                        placeholder='Confirm Password'
+                        value={confirmPassword}
+                        onChange={(e) => setconfirmPassword(e.target.value)}
+                        required />
+                </div>
+
                 <button className='bg-purple-500 mt-2 text-white p-2 rounded-md'
                     disabled={loggedIn}>
-                    {loggedIn ? 'Signing In . . .' : 'Sign in'}
+                    {loggedIn ? 'Signing Up . . .' : 'Sign Up'}
                 </button>
 
                 <Toaster
@@ -65,4 +85,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Signup
