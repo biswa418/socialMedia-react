@@ -6,7 +6,7 @@ const Settings = () => {
     const auth = useAuth();
 
     const [email, setEmail] = useState('');
-    const [name, setName] = useState(auth.user.name ? auth.user.name : '');
+    const [name, setName] = useState(auth.user?.name ? auth.user.name : '');
     const [password, setPassword] = useState('');
     const [confirmPassword, setconfirmPassword] = useState('');
     const [updateIn, setupdateIn] = useState(false);

@@ -71,6 +71,6 @@ export const signup = (name, email, password, confirm_password) => {
 export const editProfile = (id, name, password, confirm_password) => {
     return customFetch(API_URLS.editUser(), {
         method: 'POST',
-        body: { id, name, password, confirm_password }
+        body: { id, password, confirm_password, name }
     })
 }
