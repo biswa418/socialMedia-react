@@ -3,6 +3,7 @@ import Login from './Login';
 import Page404 from './Page404';
 import Settings from './Settings';
 import Signup from './Signup';
+import UserProfile from './UserProfile';
 
 
 export {
@@ -11,4 +12,5 @@ export {
     , Signup
     , Page404
     , Settings
+    , UserProfile
 }

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 import { useAuth } from '../hooks'
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -11,6 +11,12 @@ const Signup = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const auth = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (auth.user) {
+            navigate('/');
+        }
+    }, [auth]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
