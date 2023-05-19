@@ -30,7 +30,7 @@ const Home = () => {
     return (
         <div className='w-11/12 mx-auto'>
             {posts.map(post => {
-                return <div key={post._id} className='border border-teal-500 box-border rounded-md mt-[20px] bg-slate-200'>
+                return <div key={post._id} className='border border-teal-500 box-border rounded-md mt-[20px] bg-slate-100'>
                     <div className='p-3'>
                         <div className='flex items-center'>
                             <img
@@ -39,7 +39,7 @@ const Home = () => {
                                 alt="user-pic"
                             />
                             <div className='flex flex-col pl-[12px]'>
-                                <span className='text-gray-600 font-semibold text-base leading-6'>{post.user.name}</span>
+                                <span className='text-gray-600 font-semibold text-base leading-6 capitalize'>{post.user.name}</span>
                                 <span className='not-italic font-normal text-[14px] leading-3 text-gray-400'>a minute ago</span>
                             </div>
                         </div>
@@ -72,9 +72,9 @@ const Home = () => {
                             post.comments.map(comment => {
                                 return (
                                     <div key={comment._id} className='relative px-3 py-1'>
-                                        <div className='bg-slate-300 rounded-md p-3 mb-3'>
+                                        <div className='bg-slate-200 rounded-md p-3 mb-3'>
                                             <div className='flex'>
-                                                <span className='font-semibold text-xs text-gray-600'>Bill</span>
+                                                <span className='font-semibold text-xs text-gray-600 capitalize'>{comment.user?.name}</span>
                                                 <span className='ml-2 text-xs text-gray-500'> a minute ago</span >
                                                 <span className='text-xs text-gray-700 ml-2' >22</span>
                                             </div >

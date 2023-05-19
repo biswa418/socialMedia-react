@@ -1,10 +1,9 @@
 // import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { Home, Login, Page404 } from '../pages';
+import { Home, Login, Page404, Settings, Signup } from '../pages';
 import { Loader, Navbar } from './';
 import { useAuth } from '../hooks';
-import Signup from '../pages/Signup';
 
 
 
@@ -25,6 +24,7 @@ function App() {
           <Route path='/' element={<Home posts={[]} />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Signup />} />
+          <Route path='/settings' element={<Settings />} />
           <Route path='*' element={<Page404 />} />
         </Routes>
       </Router>

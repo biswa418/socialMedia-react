@@ -52,6 +52,7 @@ const Signup = () => {
                         placeholder='Name'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        autoComplete='new-pass'
                         required />
                 </div>
 
@@ -61,6 +62,7 @@ const Signup = () => {
                         placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        autoComplete='new-pass'
                         required />
                 </div>
 

@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks';
 
 const Navbar = () => {
     const auth = useAuth();
+    const navigate = useNavigate();
 
     return (
         <nav className='flex bg-gradient-to-r from-cyan-500 to-purple-500 p-1 px-3 md:p-3 md:px-5 items-center justify-between'>
@@ -18,10 +19,10 @@ const Navbar = () => {
             <div className='rightDiv flex text-white font-bold text-base'>
                 {auth.user &&
                     <div className='user flex items-center'>
-                        <Link to='/'>
+                        <Link to='/settings' className='flex items-center'>
                             <img className='h-10' alt='userDP' src='./man.png' />
+                            <span className='mx-2 text-base'>{auth.user.name}</span>
                         </Link>
-                        <span className='mx-2 text-base'>{auth.user.name}</span>
                     </div>
                 }
 
@@ -31,7 +32,10 @@ const Navbar = () => {
                             auth.user ?
                                 <>
                                     <li className='px-1'>
-                                        <button className='hover:underline' onClick={auth.logout}>Sign out</button>
+                                        <button className='hover:underline' onClick={() => {
+                                            auth.logout();
+                                            navigate('/login');
+                                        }}>Sign out</button>
                                     </li>
                                 </>
                                 :
