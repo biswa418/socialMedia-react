@@ -34,7 +34,7 @@ const Login = () => {
                 <h2 className='md:text-2xl text-blue-400 font-bold'>Hi Dev, Sign in!</h2>
 
                 <div className='w-full my-2'>
-                    <input className='w-full text-slate-500 outline-gray-300 text-lg p-2 rounded-md'
+                    <input className='w-full  md:w-5/6 text-slate-500 outline-gray-300 text-lg p-2 rounded-md'
                         type='email'
                         placeholder='Email'
                         value={email}
@@ -43,7 +43,7 @@ const Login = () => {
                 </div>
 
                 <div className='my-2'>
-                    <input className='w-full text-slate-500 outline-gray-300 text-lg p-2 rounded-md'
+                    <input className='w-full  md:w-5/6 text-slate-500 outline-gray-300 text-lg p-2 rounded-md'
                         type='password'
                         placeholder='Password'
                         value={password}
@@ -51,7 +51,7 @@ const Login = () => {
                         required />
                 </div>
 
-                <button className='bg-purple-500 mt-2 text-white p-2 rounded-md'
+                <button className='bg-purple-500  md:w-5/6 mt-2 text-white p-2 rounded-md'
                     disabled={loggedIn}>
                     {loggedIn ? 'Signing In . . .' : 'Sign in'}
                 </button>

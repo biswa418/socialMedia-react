@@ -60,3 +60,10 @@ export const login = (email, password) => {
         body: { email, password },
     })
 }
+
+export const signup = (name, email, password, confirm_password) => {
+    return customFetch(API_URLS.signup(), {
+        method: 'POST',
+        body: { email, name, password, confirm_password }
+    })
+}
