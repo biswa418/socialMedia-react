@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../hooks';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 
 const Settings = () => {
     const auth = useAuth();
@@ -12,14 +12,28 @@ const Settings = () => {
     const [updateIn, setupdateIn] = useState(false);
     const [editMode, seteditMode] = useState(false);
 
-    const updateProfile = (e) => {
+    const updateProfile = async (e) => {
         e.preventDefault();
-
         setupdateIn(true);
 
+        const response = await auth.updateUser(
+            auth.user._id,
+            name,
+            password,
+            confirmPassword
+        );
 
+        if (response.success) {
+            seteditMode(false);
+            setupdateIn(false);
 
+            setPassword('');
+            setconfirmPassword('');
 
+            return toast.success('User updated successfully');
+        } else {
+            toast.error(`${response.message}`);
+        }
 
         setupdateIn(false);
     }
