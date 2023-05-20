@@ -86,3 +86,15 @@ export const getUserFriends = () => {
         method: 'GET',
     })
 }
+
+export const addFriends = (userId) => {
+    return customFetch(API_URLS.createFriendship(userId), {
+        method: 'POST',
+    })
+}
+
+export const removeFriends = (userId) => {
+    return customFetch(API_URLS.removeFriend(userId), {
+        method: 'POST',
+    })
+}

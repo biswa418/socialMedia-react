@@ -13,29 +13,29 @@ export const useProvideAuth = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const getUser = async () => {
-            const token = getFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
-
-            if (token) {
-                const user = jwt_decode(token);
-                const response = await getUserFriends();
-                let friendships = [];
-
-                if (response.success) {
-                    friendships = response.data.friends
-                }
-
-                setUser({
-                    ...user,
-                    friendships
-                });
-            }
-
-            setLoading(false);
-        }
-
         getUser();
     }, []);
+
+    const getUser = async (newToken) => {
+        const token = !newToken ? getFromLocalStorage(LOCALSTORAGE_TOKEN_KEY) : newToken
+
+        if (token) {
+            const user = jwt_decode(token);
+            const response = await getUserFriends();
+            let friendships = [];
+
+            if (response.success) {
+                friendships = response.data.friends
+            }
+
+            setUser({
+                ...user,
+                friendships
+            });
+        }
+
+        setLoading(false);
+    }
 
     const login = async (email, password) => {
         const response = await userLogin(email, password);
@@ -43,9 +43,11 @@ export const useProvideAuth = () => {
         if (response.success) {
             setUser(response.data.user);
             setInLocalStorage(LOCALSTORAGE_TOKEN_KEY, response.data.token ? response.data.token : null);
+            await getUser(response.data.token);
 
             return {
                 success: true,
+
             }
         } else {
             return {
@@ -96,12 +98,31 @@ export const useProvideAuth = () => {
         }
     }
 
+    const updateUserFriends = async (addFriend, friend) => {
+        if (addFriend) {
+            setUser({
+                ...user,
+                friendships: [...user.friendships, friend]
+            })
+        } else {
+            //check if friend -- remove it
+            const newFriends = user.friendships.filter(fr => fr.to_user._id !== friend.to_user._id)
+
+            setUser({
+                ...user,
+                friendships: newFriends
+            })
+
+        }
+    }
+
     return {
         user,
         login,
         signup,
         logout,
         loading,
-        updateUser
+        updateUser,
+        updateUserFriends
     }
 }
