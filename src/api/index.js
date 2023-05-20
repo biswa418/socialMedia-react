@@ -74,3 +74,9 @@ export const editProfile = (id, name, password, confirm_password) => {
         body: { id, password, confirm_password, name }
     })
 }
+
+export const getUserDetails = (userId) => {
+    return customFetch(API_URLS.userInfo(userId), {
+        method: 'GET',
+    })
+}
