@@ -91,6 +91,10 @@ const UserProfile = () => {
         return <Loader />
     }
 
+    if (userId === auth.user._id) {
+        return <Navigate to='/settings' />
+    }
+
     return (
         <div className='w-5/6 rounded-md md:w-1/3 border-2 p-5  my-8 mx-auto flex flex-col bg-slate-100 md:flex-row' onSubmit={() => { }}>
             <div className='md:px-8 w-full flex flex-col items-center justify-center'>

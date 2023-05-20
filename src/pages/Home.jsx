@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getPost } from '../api';
-import { Loader, FriendList } from "../components";
+import { Loader, FriendList, CreatePost } from "../components";
 import { Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useAuth } from "../hooks";
@@ -32,10 +32,11 @@ const Home = () => {
     }
 
     return (
-        <div className='flex'>
+        <div className='flex md:w-3/4 mx-auto'>
             <div className='w-9/12 mx-4'>
+                {auth.user && <CreatePost />}
                 {posts.map(post => {
-                    return <div key={post._id} className='border border-teal-500 box-border rounded-md mt-[20px] bg-slate-100'>
+                    return <div key={post._id} className='border border-teal-500 box-border rounded-md my-[20px] bg-slate-100'>
                         <div className='p-3'>
                             <div className='flex items-center'>
                                 <img
