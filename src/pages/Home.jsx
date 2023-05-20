@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getPost } from '../api';
 import { Loader } from "../components";
 import { Link } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -90,6 +91,11 @@ const Home = () => {
                     </div >
                 </div >
             })}
+
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div >
     );
 };

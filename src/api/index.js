@@ -80,3 +80,9 @@ export const getUserDetails = (userId) => {
         method: 'GET',
     })
 }
+
+export const getUserFriends = () => {
+    return customFetch(API_URLS.friends(), {
+        method: 'GET',
+    })
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 import { useAuth } from '../hooks'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const Login = () => {
         if (auth.user) {
             navigate('/');
         }
-    }, [auth]);
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,13 +24,14 @@ const Login = () => {
         const response = await auth.login(email, password);
 
         if (response.success) {
-            toast.success('Successfully logged in', {
-            });
+            toast.dismiss(loadId);
+            toast.success('Successfully logged in');
+
+            setTimeout(() => navigate('/'), 1000);
         } else {
             toast.error(`${response.message}`)
         }
 
-        toast.dismiss(loadId);
         setLoggedIn(false);
     }
 

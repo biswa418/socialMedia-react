@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../hooks';
 import { Toaster, toast } from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { getUserDetails } from '../api';
 import { Loader } from '../components';
 
@@ -11,6 +11,11 @@ const UserProfile = () => {
     const { userId } = useParams();
     const auth = useAuth();
     const nav = useNavigate();
+
+    if (!auth.user) {
+        setTimeout(() => toast.error(`You have to login to see the details.`), 500);
+        return <Navigate to='/login' />
+    }
 
     useEffect(() => {
         if (!auth.user) {
@@ -32,7 +37,23 @@ const UserProfile = () => {
         }
 
         getUser();
-    }, [userId]);
+    }, [userId, auth.user]);
+
+    const checkIfFriend = () => {
+        const friends = auth.user.friendships;
+
+        if (friends) {
+            const friendList = friends.map(friend => friend.to_user._id);
+
+            if (friendList.indexOf(userId) > -1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    const checkFriend = checkIfFriend();
 
     if (loading) {
         return <Loader />
@@ -58,13 +79,17 @@ const UserProfile = () => {
                 </div>
 
                 <div className='w-full mt-2 flex flex-col items-end'>
-                    <button className='bg-cyan-500 my-4 w-full mt-2 text-white p-2 rounded-md'>
-                        Add friend
-                    </button>
-
-                    <button className='bg-cyan-500 w-full mb-2 text-white p-2 rounded-md'>
-                        Remove friend
-                    </button>
+                    {
+                        checkFriend ?
+                            (<button className='bg-cyan-500 w-full mb-2 text-white p-2 rounded-md'>
+                                Remove friend
+                            </button>)
+                            : (
+                                <button className='bg-cyan-500 my-4 w-full mt-2 text-white p-2 rounded-md'>
+                                    Add friend
+                                </button>
+                            )
+                    }
                 </div>
 
                 <Toaster
