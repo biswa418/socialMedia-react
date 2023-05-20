@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { getPost } from '../api';
 import { Loader } from "../components";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -39,7 +40,8 @@ const Home = () => {
                                 alt="user-pic"
                             />
                             <div className='flex flex-col pl-[12px]'>
-                                <span className='text-gray-600 font-semibold text-base leading-6 capitalize'>{post.user.name}</span>
+                                {/* from link also we can pass the state -- to = {{ pathname: `/users/${post.user._id}`, state: {user: post.user}}}  -- But it wont load when someone access the url without the below link*/}
+                                <Link to={`/users/${post.user._id}`} className='text-gray-600 hover:underline font-semibold text-base leading-6 capitalize'>{post.user.name}</Link>
                                 <span className='not-italic font-normal text-[14px] leading-3 text-gray-400'>a minute ago</span>
                             </div>
                         </div>

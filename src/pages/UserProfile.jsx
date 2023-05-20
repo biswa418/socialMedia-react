@@ -1,86 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAuth } from '../hooks';
 import { Toaster, toast } from 'react-hot-toast';
 import { Navigate } from 'react-router-dom';
 
 const UserProfile = () => {
-    const auth = useAuth();
-
-    const [name, setName] = useState(auth.user?.name ? auth.user.name : '');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setconfirmPassword] = useState('');
-    const [updateIn, setupdateIn] = useState(false);
-    const [editMode, seteditMode] = useState(false);
-
-    const updateProfile = async (e) => {
-        e.preventDefault();
-        setupdateIn(true);
-
-        const response = await auth.updateUser(
-            auth.user._id,
-            name,
-            password,
-            confirmPassword
-        );
-
-        if (response.success) {
-            seteditMode(false);
-            setupdateIn(false);
-
-            setPassword('');
-            setconfirmPassword('');
-
-            return toast.success('User updated successfully');
-        } else {
-            toast.error(`${response.message}`);
-        }
-
-        setupdateIn(false);
-    }
-
-    if (!auth.user) {
-        return <Navigate to='/login' />
-    }
+    const user = {}
 
     return (
-        <div className='w-5/6 rounded-md md:w-1/3 border-2 p-5  my-8 mx-auto flex flex-col bg-slate-100 md:flex-row' onSubmit={updateProfile}>
+        <div className='w-5/6 rounded-md md:w-1/3 border-2 p-5  my-8 mx-auto flex flex-col bg-slate-100 md:flex-row' onSubmit={() => { }}>
             <div className='md:px-8 w-full flex flex-col items-center justify-center'>
-                <img className='w-1/4 md:w-1/2' src='./man.png' alt='login' />
+                <img className='w-1/4 md:w-1/2' src='../man.png' alt='login' />
 
                 <div className='w-full mt-2'>
                     <div className='text-slate-400'>Email</div>
                     <p className='w-full md:w-5/6 text-slate-600 text-lg'
-                    >{auth.user?.email}
+                    >{user?.email}
                     </p>
                 </div>
 
                 <div className='w-full mt-2'>
                     <div className='text-slate-400'>Name</div>
-                    {
-                        !editMode ?
-                            <p className='w-full md:w-5/6 text-slate-600 text-lg'>
-                                {auth.user?.name}
-                            </p>
-                            :
-
-                            <input className='w-full text-slate-600 outline-gray-300 text-lg p-2 rounded-md'
-                                type='text'
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required />
-                    }
+                    <p className='w-full md:w-5/6 text-slate-600 text-lg'>
+                        {user?.name}
+                    </p>
                 </div>
 
                 <div className='w-full mt-2 flex flex-col items-end'>
-                    <button className='bg-purple-500 my-4 w-full mt-2 text-white p-2 rounded-md'
-                        disabled={updateIn}>
-                        {updateIn ? 'Updating . . .' : 'Update profile'}
+                    <button className='bg-cyan-500 my-4 w-full mt-2 text-white p-2 rounded-md'>
+                        Add friend
                     </button>
 
-                    <button className='text-purple-500 mb-4  p-2 rounded-md'
-                        disabled={updateIn}
-                        onClick={() => seteditMode(false)}>
-                        Go back
+                    <button className='bg-cyan-500 w-full mb-2 text-white p-2 rounded-md'>
+                        Remove friend
                     </button>
                 </div>
 

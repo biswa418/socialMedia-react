@@ -20,7 +20,7 @@ const Navbar = () => {
                 {auth.user &&
                     <div className='user flex items-center'>
                         <Link to='/settings' className='flex items-center'>
-                            <img className='h-10' alt='userDP' src='./man.png' />
+                            <img className='h-10' alt='userDP' src='../man.png' />
                             <span className='mx-2 text-base'>{auth.user.name}</span>
                         </Link>
                     </div>
