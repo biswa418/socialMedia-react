@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { usePost } from '../hooks';
-import { createComment } from '../api';
+import { createComment, toggleLike } from '../api';
 import { toast } from 'react-hot-toast';
 
 const Post = ({ post }) => {
     const [comment, setComment] = useState('');
     const [creatingComm, setCreatingComm] = useState(false);
     const posts = usePost();
+    const likedPost = useRef(null)
+    const likedComment = useRef(null)
+    const [likesComment, setLikes] = useState(0)
 
     const handleComment = async (e) => {
-        if (e.key === 'Enter') {
+        if (e.keyCode === 13) {
             setCreatingComm(true)
-
             const response = await createComment(comment, post._id)
 
             if (response.success) {
@@ -24,6 +26,41 @@ const Post = ({ post }) => {
             }
 
             setCreatingComm(false);
+        }
+    }
+
+    const handleLikePost = async () => {
+        const response = await toggleLike(post._id, 'Post')
+
+        if (response.success) {
+            if (response.data.deleted) {
+                toast.success('Like removed successfully')
+                likedPost.current.innerText--;
+            } else {
+                toast.success('Like added successfully')
+                likedPost.current.innerText++;
+            }
+        } else {
+            toast.error(response.message)
+        }
+    }
+
+    const handleLikeComment = async (id) => {
+        const response = await toggleLike(id, 'Comment')
+        console.log(likedComment.current.innerText);
+
+        if (response.success) {
+            if (response.data.deleted) {
+                toast.success('Like removed successfully')
+                --likedComment.current.innerText //doesn't work for comments
+
+            } else {
+                toast.success('Like added successfully')
+                ++likedComment.current.innerText
+            }
+
+        } else {
+            toast.error(response.message)
         }
     }
 
@@ -46,12 +83,19 @@ const Post = ({ post }) => {
 
                 <div className='p-1 flex border border-solid border-gray-300 px-[10px] font-normal text-base text-gray-600 border-x-0'>
                     <div className='flex items-center'>
-                        <img
-                            className='h-4 cursor-pointer'
-                            src="/like.svg"
-                            alt="likes-icon"
-                        />
-                        <span className='ml-2'>{post.likes.length}</span>
+                        <button onClick={handleLikePost}>
+                            <img
+                                className='h-4 cursor-pointer'
+                                src="/like.svg"
+                                alt="likes-icon"
+                            />
+                        </button>
+
+                        <span
+                            ref={likedPost}
+                            className='ml-2'>
+                            {post.likes.length}
+                        </span>
                     </div>
 
                     <div className='ml-4 flex items-center'>
@@ -86,7 +130,27 @@ const Post = ({ post }) => {
                                     </div >
 
                                     <div className='mt-2'>{comment.content}</div>
-                                </div >
+
+                                    <div className='p-1 flex border border-solid border-gray-300 px-[10px] font-normal text-base text-gray-600 border-x-0'>
+
+                                        <div className='flex items-center'>
+                                            <button onClick={e => handleLikeComment(comment._id)}>
+                                                <img
+                                                    className='h-4 cursor-pointer'
+                                                    src="/like.svg"
+                                                    alt="likes-icon"
+                                                />
+                                            </button>
+
+                                            <span
+                                                ref={likedComment}
+                                                value={likesComment}
+                                                className='ml-2'>
+                                                {comment.likes.length}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div >
                         )
                     })
