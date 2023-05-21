@@ -36,9 +36,9 @@ const Home = () => {
             <div className='w-9/12 mx-4'>
                 {auth.user && <CreatePost />}
                 {posts.map(post => {
-                    return <div key={post._id} className='border border-teal-500 box-border rounded-md my-[20px] bg-slate-100'>
+                    return <div key={post._id} className='border border-purple-500 box-border rounded-md my-[20px] bg-slate-100'>
                         <div className='p-3'>
-                            <div className='flex items-center'>
+                            <div className='flex items-center px-3'>
                                 <img
                                     className='h-[50px]'
                                     src="/man.png"
@@ -50,7 +50,7 @@ const Home = () => {
                                     <span className='not-italic font-normal text-[14px] leading-3 text-gray-400'>a minute ago</span>
                                 </div>
                             </div>
-                            <div className='font-normal not-italic text-base text-slate-700 mt-4'>{post.content}</div>
+                            <div className='font-normal px-3 mb-3 not-italic text-base text-slate-700 mt-4'>{post.content}</div>
 
                             <div className='p-1 flex border border-solid border-gray-300 px-[10px] font-normal text-base text-gray-600 border-x-0'>
                                 <div className='flex items-center'>

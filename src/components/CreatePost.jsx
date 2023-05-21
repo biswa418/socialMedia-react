@@ -14,6 +14,7 @@ const CreatePost = () => {
 
         if (checkedPost.length === 0) {
             toast.error('Post cannot be empty! Come on, write something.')
+            setaddingPost(false);
             return;
         }
 
