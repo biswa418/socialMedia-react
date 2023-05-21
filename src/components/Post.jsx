@@ -47,7 +47,6 @@ const Post = ({ post }) => {
 
     const handleLikeComment = async (id) => {
         const response = await toggleLike(id, 'Comment')
-        console.log(likedComment.current.innerText);
 
         if (response.success) {
             if (response.data.deleted) {
