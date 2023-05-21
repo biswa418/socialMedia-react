@@ -1,33 +1,14 @@
 // import PropTypes from 'prop-types';
-
-import { useEffect, useState } from "react";
-import { getPost } from '../api';
 import { Loader, FriendList, CreatePost } from "../components";
 import { Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { useAuth } from "../hooks";
+import { useAuth, usePost } from "../hooks";
 
 const Home = () => {
-    const [posts, setPosts] = useState([]);
-    const [loader, setLoading] = useState(true);
     const auth = useAuth();
+    const posts = usePost();
 
-    useEffect(() => {
-        async function loadPost() {
-            const allPosts = await getPost();
-
-            if (allPosts.success) {
-                setPosts(allPosts.data.posts);
-            }
-
-            setLoading(false);
-        }
-
-        loadPost();
-    }, []);
-
-
-    if (loader) {
+    if (posts.loading) {
         return <Loader />
     }
 
@@ -35,7 +16,7 @@ const Home = () => {
         <div className='flex md:w-3/4 mx-auto'>
             <div className='w-9/12 mx-4'>
                 {auth.user && <CreatePost />}
-                {posts.map(post => {
+                {posts.data.map(post => {
                     return <div key={post._id} className='border border-purple-500 box-border rounded-md my-[20px] bg-slate-100'>
                         <div className='p-3'>
                             <div className='flex items-center px-3'>

@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { createContext } from 'react'
 
-export const PostProvider = () => {
+import { useProvidePosts } from '../hooks'
+
+const initialState = {
+    posts: [],
+    loading: true,
+    addNewPost: () => { }
+}
+
+export const PostsContext = createContext(initialState);
+
+export const PostProvider = ({ children }) => {
+    const posts = useProvidePosts();
+
     return (
-        <div>PostProvider</div>
+        <PostsContext.Provider value={posts}>
+            {children}
+        </PostsContext.Provider>
     )
 }
 

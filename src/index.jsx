@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client'
 import { App } from './components'
 import './styles/index.css'
 import './styles/page404.css'
-import { AuthProvider } from './providers/AuthProvider'
+import { AuthProvider, PostProvider } from './providers'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
-    <App />
+    <PostProvider>
+      <App />
+    </PostProvider>
   </AuthProvider>
 )

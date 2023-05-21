@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { addPosts } from '../api';
 import { toast } from 'react-hot-toast';
+import { usePost } from '../hooks';
 
 const CreatePost = () => {
     const [post, setPost] = useState('');
     const [addingPost, setaddingPost] = useState(false);
+    const posts = usePost();
+
 
     const handlePostSubmit = async () => {
         setaddingPost(true);
@@ -21,6 +24,7 @@ const CreatePost = () => {
         const response = await addPosts(post);
 
         if (response.success) {
+            posts.addNewPost(response.data.post);
             setPost('');
             toast.success('Post added successfully.')
         } else {
