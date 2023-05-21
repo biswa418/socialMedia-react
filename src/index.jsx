@@ -6,9 +6,11 @@ import './styles/page404.css'
 import { AuthProvider, PostProvider } from './providers'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <AuthProvider>
-    <PostProvider>
-      <App />
-    </PostProvider>
-  </AuthProvider>
+  <React.StrictMode>
+    <AuthProvider>
+      <PostProvider>
+        <App />
+      </PostProvider>
+    </AuthProvider>
+  </React.StrictMode>
 )

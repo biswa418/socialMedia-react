@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Loader from './Loader';
 import FriendList from './FriendList';
 import CreatePost from './CreatePost';
+import Post from './Post';
 
 
 export {
@@ -10,5 +11,6 @@ export {
     Loader,
     Navbar,
     FriendList,
-    CreatePost
+    CreatePost,
+    Post
 }
