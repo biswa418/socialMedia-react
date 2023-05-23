@@ -6,6 +6,9 @@
 # Description
 The front-end site of our socialMedia app
 
+# Installation
+download the code and run  <code>npm install</code> and then <code>npm start</code> to view it in the browser
+
 # Features
 This is the complete front-end side of the social-media app we've created using NodeJS. This is built using React.
 
