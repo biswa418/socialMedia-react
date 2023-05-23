@@ -1,18 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { usePost } from '../hooks';
+import { useAuth, usePost } from '../hooks';
 import { createComment, toggleLike } from '../api';
 import { toast } from 'react-hot-toast';
 
 const Post = ({ post }) => {
     const [comment, setComment] = useState('');
     const [creatingComm, setCreatingComm] = useState(false);
+    const auth = useAuth();
     const posts = usePost();
     const likedPost = useRef(null)
     const likedComment = useRef(null)
+    const [comBox, toggleCommentBox] = useState(false)
     const [likesComment, setLikes] = useState(0)
 
     const handleComment = async (e) => {
+        if (!auth.user) {
+            toast.error('You have to login first to interact.')
+            return;
+        }
+
         if (e.keyCode === 13) {
             setCreatingComm(true)
             const response = await createComment(comment, post._id)
@@ -30,6 +37,11 @@ const Post = ({ post }) => {
     }
 
     const handleLikePost = async () => {
+        if (!auth.user) {
+            toast.error('You have to login first to interact.')
+            return;
+        }
+
         const response = await toggleLike(post._id, 'Post')
 
         if (response.success) {
@@ -46,6 +58,11 @@ const Post = ({ post }) => {
     }
 
     const handleLikeComment = async (id) => {
+        if (!auth.user) {
+            toast.error('You have to login first to interact.')
+            return;
+        }
+
         const response = await toggleLike(id, 'Comment')
 
         if (response.success) {
@@ -80,7 +97,7 @@ const Post = ({ post }) => {
                 </div>
                 <div className='font-normal px-3 mb-3 not-italic text-base text-slate-700 mt-4'>{post.content}</div>
 
-                <div className='p-1 flex border border-solid border-gray-300 px-[10px] font-normal text-base text-gray-600 border-x-0'>
+                <div className='p-1 mb-2 flex border border-solid border-gray-300 px-[10px] font-normal text-base text-gray-600 border-x-0'>
                     <div className='flex items-center'>
                         <button onClick={handleLikePost}>
                             <img
@@ -99,6 +116,9 @@ const Post = ({ post }) => {
 
                     <div className='ml-4 flex items-center'>
                         <img
+                            onClick={e => {
+                                toggleCommentBox(!comBox)
+                            }}
                             className='h-4 cursor-pointer'
                             src="/chat.png"
                             alt="comments-icon"
@@ -106,16 +126,22 @@ const Post = ({ post }) => {
                         <span className='ml-2'>{post.comments.length}</span>
                     </div>
                 </div>
-                <div className='my-2 md:p-3'>
-                    <input
-                        value={comment}
-                        onKeyDown={handleComment}
-                        disabled={creatingComm}
-                        onChange={(e) => setComment(e.target.value)}
-                        className='border border-solid border-gray-100 rounded-md text-xs h-9 my-0 mx-auto w-full md:text-base box-border p-2 focus:outline-none focus-visible:outline-0'
-                        placeholder="Start typing a comment"
-                    />
-                </div>
+
+                {/* comment box */}
+                {auth.user &&
+                    <div className='my-2 md:p-3 transition-all ease-in-out duration-300'
+                        hidden={!comBox}
+                    >
+                        <input
+                            value={comment}
+                            onKeyDown={handleComment}
+                            disabled={creatingComm}
+                            onChange={(e) => setComment(e.target.value)}
+                            className='border border-solid border-gray-100 rounded-md text-xs h-9 my-0 mx-auto w-full md:text-base box-border p-2 focus:outline-none focus-visible:outline-0'
+                            placeholder="Start typing a comment"
+                        />
+                    </div>
+                }
 
                 {
                     post.comments.map(comment => {
