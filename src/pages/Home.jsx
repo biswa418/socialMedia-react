@@ -13,6 +13,7 @@ const Home = () => {
   const [page, setPage] = useState(0);
   const [end, setEnd] = useState(true);
   const [Posts, setPosts] = useState(posts?.data);
+  const [mobile, setMobile] = useState(true);
 
   async function callContent() {
     try {
@@ -37,6 +38,27 @@ const Home = () => {
     setPage(page + 1);
   }, [posts.data.length]);
 
+  const handleResize = () => {
+    if (window.screen.width < 768) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    if (window.screen.width < 768) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   if (posts.loading) {
     return <Loader />;
   }
@@ -44,10 +66,17 @@ const Home = () => {
   return (
     <>
       <div className="p-1 text-sm bg-gradient-to-r to-cyan-600 from-purple-600 text-white flex justify-center">
-        Home page - Find posts of fellow developers
+        Home page - Find posts of fellow developers &nbsp;
+        <a
+          target="_blank"
+          href="https://github.com/biswa418/socialMedia-react#readme"
+          className="hover:cursor-pointer underline"
+        >
+          Details
+        </a>
       </div>
       <div className="flex">
-        <div className="w-9/12 mx-4 ">
+        <div className="w-11/12 md:w-9/12 mx-4">
           <InfiniteScroll
             dataLength={Posts?.length}
             next={() => callContent(page)}
@@ -65,12 +94,13 @@ const Home = () => {
             className="md:w-3/4 mx-auto"
           >
             {auth.user && <CreatePost />}
+            {auth.user && mobile && <FriendList mobile={true} />}
             {Posts.map((post) => {
               return <Post key={post?._id} post={post} />;
             })}
           </InfiniteScroll>
         </div>
-        {auth.user && <FriendList />}
+        {auth.user && !mobile && <FriendList mobile={false} />}
         <Toaster position="top-right" reverseOrder={false} />
       </div>
     </>
