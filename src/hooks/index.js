@@ -155,6 +155,11 @@ export const useProvidePosts = () => {
         setPosts(newPosts)
     }
 
+    const addMulPosts = (post) => {
+        const newPosts = [...posts, ...post];
+        setPosts(newPosts)
+    }
+
     const addComment = (comment, postId) => {
         const updatedWithComment = posts.map((post) => {
             if (post._id === postId) {
@@ -170,6 +175,7 @@ export const useProvidePosts = () => {
         data: posts,
         loading,
         addNewPost,
-        addComment
+        addComment,
+        addMulPosts
     }
 }
