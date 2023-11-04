@@ -6,6 +6,7 @@ import { useAuth, usePost } from "../hooks";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getPost } from "../api";
 import { useEffect, useState } from "react";
+import Suggest from "../components/Suggest";
 
 const Home = () => {
   const auth = useAuth();
@@ -69,14 +70,16 @@ const Home = () => {
         Home page - Find posts of fellow developers &nbsp;
         <a
           target="_blank"
+          rel="noreferrer"
           href="https://github.com/biswa418/socialMedia-react#readme"
           className="hover:cursor-pointer underline"
         >
           Details
         </a>
       </div>
-      <div className="flex">
-        <div className="w-11/12 md:w-9/12 mx-4">
+
+      <div className="flex justify-center">
+        <div className="w-11/12 md:w-9/12 mx-1 max-w-[790px]">
           <InfiniteScroll
             dataLength={Posts?.length}
             next={() => callContent(page)}
@@ -94,13 +97,16 @@ const Home = () => {
             className="md:w-3/4 mx-auto"
           >
             {auth.user && <CreatePost />}
-            {auth.user && mobile && <FriendList mobile={true} />}
+            {auth.user && mobile && <FriendList mobile={mobile} />}
             {Posts.map((post) => {
               return <Post key={post?._id} post={post} />;
             })}
           </InfiniteScroll>
         </div>
-        {auth.user && !mobile && <FriendList mobile={false} />}
+        <div className="w-3/12 mx-1 mr-4">
+          {auth.user && !mobile && <FriendList mobile={false} />}
+          {auth.user && !mobile && <Suggest posts={Posts}/>}
+        </div>
         <Toaster position="top-right" reverseOrder={false} />
       </div>
     </>

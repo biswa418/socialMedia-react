@@ -9,12 +9,11 @@
 
 body {
   margin: 0;
-  /* display: grid;
-  place-items: center; */
+  margin-top: 5rem;
   min-width: 320px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   position: relative;
-  background-color: #f7f9fc;
+  background-color: #F3F5F7;
 }
 
 .newtons-cradle {
@@ -95,7 +94,7 @@ body {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #F3F5F7;
   }
 
   a:hover {
