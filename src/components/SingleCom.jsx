@@ -36,14 +36,14 @@ const SingleCom = ({ comment }) => {
           <img className="h-8 mr-2" src="../man.png" alt="userDP" />
         </div>
 
-        <div className=" pl-7 ml-4 border border-y-0 border-r-0">
+        <div className="pl-7 ml-4 border border-y-0 border-r-0">
           <span className="font-semibold text-sm capitalize">
             {comment?.user?.name}
           </span>
-          <span className="md:ml-2 text-xs text-gray-500">
+          <span className="md:ml-2 text-xs text-gray-400">
             {" "}
             {timeDiff(comment?.createdAt) > 0
-              ? `${timeDiff(comment?.createdAt)} hours ago`
+              ? `${timeDiff(comment?.createdAt)}h`
               : `less than a hour ago`}
           </span>
 
