@@ -1,10 +1,10 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useAuth, usePost } from "../hooks";
 import toast from "react-hot-toast";
 import { createComment } from "../api";
 import SingleCom from "./SingleCom";
 
-const Comment = ({comments, post}) => {
+const Comment = ({ comments, post }) => {
   const [comm, setComm] = useState(comments);
   const auth = useAuth();
   const posts = usePost();
@@ -19,6 +19,13 @@ const Comment = ({comments, post}) => {
 
     if (e.keyCode === 13) {
       setCreatingComm(true);
+
+      if (comment || comment.length <= 0) {
+        setCreatingComm(false);
+        toast.error("Comment cannot be empty.");
+        return;
+      }
+
       const response = await createComment(comment, post._id);
 
       if (response.success) {
@@ -51,9 +58,7 @@ const Comment = ({comments, post}) => {
       )}
 
       {comm?.map((comment) => {
-        return (
-          <SingleCom key={`comment-${comment._id}`} comment={comment}/>
-        );
+        return <SingleCom key={`comment-${comment._id}`} comment={comment} />;
       })}
     </div>
   );
