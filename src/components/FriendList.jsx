@@ -125,4 +125,8 @@ const FriendList = (props) => {
   );
 };
 
+// FriendList.propTypes = {
+//     mobile: PropTypes.boolean.isRequired
+// }
+
 export default FriendList;

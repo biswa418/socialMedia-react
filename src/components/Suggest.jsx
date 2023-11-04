@@ -26,7 +26,7 @@ const Suggest = (props) => {
         (val) => val.to_user._id == post?.user?._id
       );
 
-      if (!found && !alrFriend) {
+      if (!found && !alrFriend && auth.user?._id != post?.user?._id) {
         user = [...user, post.user];
         uniqueSet = [...uniqueSet, post?.user?._id];
       }
@@ -34,7 +34,7 @@ const Suggest = (props) => {
 
     //unique user
     setUsers(user);
-  }, [posts]);
+  }, [posts, friendships]);
 
   return (
     <>
