@@ -2,9 +2,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../hooks";
 import { toggleLike } from "../api";
+import { timeDiff } from "../utils";
 
 const SingleCom = ({ comment }) => {
-    const auth = useAuth();
+  const auth = useAuth();
   const [likes, setLikes] = useState(comment?.likes?.length);
 
   const handleLikeComment = async (id, e) => {
@@ -18,10 +19,10 @@ const SingleCom = ({ comment }) => {
     if (response.success) {
       if (response.data.deleted) {
         toast.success("Like removed successfully");
-        setLikes(likes-1);
+        setLikes(likes - 1);
       } else {
         toast.success("Like added successfully");
-        setLikes(likes+1);
+        setLikes(likes + 1);
       }
     } else {
       toast.error(response.message);
@@ -39,7 +40,12 @@ const SingleCom = ({ comment }) => {
           <span className="font-semibold text-sm capitalize">
             {comment?.user?.name}
           </span>
-          <span className="md:ml-2 text-xs text-gray-500"> a minute ago</span>
+          <span className="md:ml-2 text-xs text-gray-500">
+            {" "}
+            {timeDiff(comment?.createdAt) > 0
+              ? `${timeDiff(comment?.createdAt)} hours ago`
+              : `less than a hour ago`}
+          </span>
 
           <div className="mt-1 text-sm">{comment?.content}</div>
 

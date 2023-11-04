@@ -103,7 +103,7 @@ const Home = () => {
             })}
           </InfiniteScroll>
         </div>
-        <div className="w-3/12 mx-1 mr-4">
+        <div className="hidden md:block md:w-3/12 mx-1 mr-4">
           {auth.user && !mobile && <FriendList mobile={false} />}
           {auth.user && !mobile && <Suggest posts={Posts}/>}
         </div>

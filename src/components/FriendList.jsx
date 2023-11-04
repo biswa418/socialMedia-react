@@ -23,7 +23,7 @@ const FriendList = (props) => {
         initial={mobile ? "hidden" : "show"}
         animate={opened ? "show" : "hidden"}
         transition={{ type: "tween" }}
-        className="w-full min-w-max max-h-80 max-w-[298px] overflow-hidden overflow-y-scroll scrollbar-none rounded-md mt-[20px] bg-white p-2 md:p-4 me-4"
+        className="w-full min-w-max max-h-80 md:max-w-[298px] overflow-hidden overflow-y-scroll scrollbar-none rounded-md mt-[20px] bg-white p-3 md:p-4 me-4"
       >
         <div className="flex justify-between">
           <div className="text-sm uppercase text-slate-400 tracking-widest">

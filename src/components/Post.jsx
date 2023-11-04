@@ -4,6 +4,7 @@ import { useAuth, usePost } from "../hooks";
 import { createComment, toggleLike } from "../api";
 import { toast } from "react-hot-toast";
 import Comment from "./Comment";
+import { timeDiff } from "../utils";
 
 const Post = ({ post }) => {
   const auth = useAuth();
@@ -45,7 +46,7 @@ const Post = ({ post }) => {
               {post?.user?.name}
             </Link>
             <span className="not-italic font-normal text-[14px] leading-3 text-gray-400">
-              a minute ago
+              {timeDiff(post?.createdAt) > 0 ? `${timeDiff(post?.createdAt)} hours ago` : `less than a hour ago`}
             </span>
           </div>
         </div>

@@ -37,7 +37,7 @@ const Comment = ({comments, post}) => {
   return (
     <div>
       {auth.user && (
-        <div className="mt-2 flex items-center md:p-3 transition-all ease-in-out duration-300">
+        <div className="mt-2 flex items-center p-3 transition-all ease-in-out duration-300">
           <img className="h-8 mr-2" src="../man.png" alt="userDP" />
           <input
             value={comment}
