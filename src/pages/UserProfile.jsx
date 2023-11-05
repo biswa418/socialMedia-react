@@ -124,14 +124,14 @@ const UserProfile = () => {
               className="bg-cyan-500 w-full mb-2 text-white p-2 rounded-md"
               onClick={handleRemoveFriendClick}
             >
-              {requestInProgress ? "Removing friend. . ." : "Remove friend"}
+              {requestInProgress ? "Unfollowing. . ." : "Unfollow"}
             </button>
           ) : (
             <button
               className="bg-cyan-500 my-4 w-full mt-2 text-white p-2 rounded-md"
               onClick={handleAddFriendClick}
             >
-              {requestInProgress ? "Adding friend. . ." : "Add friend"}
+              {requestInProgress ? "Following. . ." : "Follow"}
             </button>
           )}
         </div>

@@ -27,7 +27,7 @@ const FriendList = (props) => {
       >
         <div className="flex justify-between">
           <div className="text-sm uppercase text-slate-400 tracking-widest">
-            Friends
+            Following
           </div>
 
           {mobile && (

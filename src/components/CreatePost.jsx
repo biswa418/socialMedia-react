@@ -39,7 +39,7 @@ const CreatePost = () => {
     return (
         <div className='mt-[20px] flex flex-col bg-purple-100 p-4 rounded-md'>
             <textarea
-                className='w-full resize-none bg-slate-50 rounded-md border border-purple-500 focus-visible:outline-4 focus-visible:bg-slate-100 focus-visible:outline-purple-700 p-4' value={post}
+                className='w-full resize-none bg-slate-50 rounded-md border border-purple-500 focus-visible:outline-1 focus-visible:outline-purple-700 p-4' value={post}
                 rows={5}
                 placeholder='Write something down..'
                 onChange={(e) => setPost(e.target.value)}

@@ -66,7 +66,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="p-1 text-sm bg-gradient-to-r to-cyan-600 from-purple-600 text-white flex justify-center">
+      <div className="p-1 text-sm bg-gradient-to-r to-cyan-500 from-purple-500 text-white flex justify-center">
         Home page - Find posts of fellow developers &nbsp;
         <a
           target="_blank"
@@ -78,7 +78,7 @@ const Home = () => {
         </a>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center mx-auto md:w-9/12 max-w-[907px]">
         <div className="w-11/12 md:w-9/12 mx-1 max-w-[790px]">
           <InfiniteScroll
             dataLength={Posts?.length}
@@ -94,7 +94,7 @@ const Home = () => {
                 <b>Yay! You have reached the end.</b>
               </p>
             }
-            className="md:w-3/4 mx-auto"
+            className="md:px-5 mx-auto"
           >
             {auth.user && <CreatePost />}
             {auth.user && mobile && <FriendList mobile={mobile} />}
@@ -103,9 +103,9 @@ const Home = () => {
             })}
           </InfiniteScroll>
         </div>
-        <div className="hidden md:block md:w-3/12 mx-1 mr-4">
+        <div className="hidden md:block mx-1 mr-4">
           {auth.user && !mobile && <FriendList mobile={false} />}
-          {auth.user && !mobile && <Suggest posts={Posts}/>}
+          {auth.user && !mobile && <Suggest posts={Posts} />}
         </div>
         <Toaster position="top-right" reverseOrder={false} />
       </div>
