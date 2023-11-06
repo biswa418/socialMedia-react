@@ -68,6 +68,8 @@ const UserProfile = () => {
       auth.updateUserFriends(false, friendship[0]);
       toast.success(`User removed from friends successfully`);
     } else {
+        
+      auth.logout();
       toast.error(`${response.message}`);
     }
 

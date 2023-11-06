@@ -31,8 +31,6 @@ const CreatePost = () => {
             toast.error(response.message)
         }
 
-
-
         setaddingPost(false);
     }
 

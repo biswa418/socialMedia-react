@@ -27,7 +27,7 @@ const Home = () => {
           setEnd(false);
         }
 
-        toast.success("Post updated successfully.");
+        //toast.success("Post updated successfully.");
       }
     } catch (e) {
       console.error(e);
@@ -78,8 +78,8 @@ const Home = () => {
         </a>
       </div>
 
-      <div className="flex justify-center mx-auto md:w-9/12 max-w-[907px]">
-        <div className="w-11/12 md:w-9/12 mx-1 max-w-[790px]">
+      <div className="flex justify-center mx-auto md:w-9/12 max-w-[907px] relative">
+        <div className="w-11/12 md:w-9/12 mx-1 max-w-[600px]">
           <InfiniteScroll
             dataLength={Posts?.length}
             next={() => callContent(page)}
@@ -103,7 +103,7 @@ const Home = () => {
             })}
           </InfiniteScroll>
         </div>
-        <div className="hidden md:block mx-1 mr-4">
+        <div className="hidden md:block mx-1 md:w-3/12">
           {auth.user && !mobile && <FriendList mobile={false} />}
           {auth.user && !mobile && <Suggest posts={Posts} />}
         </div>

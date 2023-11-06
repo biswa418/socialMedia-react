@@ -23,10 +23,10 @@ const FriendList = (props) => {
         initial={mobile ? "hidden" : "show"}
         animate={opened ? "show" : "hidden"}
         transition={{ type: "tween" }}
-        className="w-full min-w-max max-h-80 md:max-w-[298px] overflow-hidden overflow-y-scroll scrollbar-none rounded-md mt-[20px] bg-white p-3 md:p-4 me-4"
+        className="w-full max-h-80 md:max-w-[298px] overflow-hidden overflow-y-scroll scrollbar-none rounded-md mt-[20px] bg-white p-3 md:p-4"
       >
         <div className="flex justify-between">
-          <div className="text-sm uppercase text-slate-400 tracking-widest">
+          <div className="text-sm uppercase text-slate-400 tracking-widest -mb-1">
             Following
           </div>
 
@@ -92,11 +92,11 @@ const FriendList = (props) => {
                 to={`/users/${friend.to_user._id}`}
               >
                 <div className="flex items-center">
-                  <div className="md:w-9 w-5">
+                  <div className="w-9">
                     <img src="../man.png" alt="friend-dp" />
                   </div>
 
-                  <div className="text-slate-500 capitalize text-xs md:text-sm md:ms-2">
+                  <div className="text-slate-500 capitalize text-sm ms-4 md:text-sm md:ms-2">
                     {friend.to_user?.name}
                   </div>
                 </div>

@@ -49,7 +49,7 @@ const SingleCom = ({ comment }) => {
 
           <div className="mt-1 text-sm">{comment?.content}</div>
 
-          <div className="p-1 flex mt-2 font-normal text-sm text-gray-600">
+          <div className="pb-1 flex mt-2 font-normal text-sm text-gray-600">
             <div className="flex items-center">
               <button
                 onClick={(e) => handleLikeComment(comment?._id, e)}

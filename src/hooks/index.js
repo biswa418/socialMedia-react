@@ -27,6 +27,8 @@ export const useProvideAuth = () => {
 
             if (response.success) {
                 friendships = response.data.friends
+            }else{
+                logout()
             }
 
             setUser({
@@ -92,6 +94,8 @@ export const useProvideAuth = () => {
                 success: true,
             }
         } else {
+            logout();
+            
             return {
                 success: false,
                 message: response.message

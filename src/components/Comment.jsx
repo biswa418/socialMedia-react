@@ -20,7 +20,7 @@ const Comment = ({ comments, post }) => {
     if (e.keyCode === 13) {
       setCreatingComm(true);
 
-      if (comment || comment.length <= 0) {
+      if (!comment || comment.length <= 0) {
         setCreatingComm(false);
         toast.error("Comment cannot be empty.");
         return;
@@ -32,7 +32,7 @@ const Comment = ({ comments, post }) => {
         posts.addComment(response.data.comment, post._id);
         setComm([...comm, response.data.comment]);
         setComment("");
-        toast.success("Comment created successfully.");
+        toast.success("Comment added successfully.");
       } else {
         toast.error(response.message);
       }
