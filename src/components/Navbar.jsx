@@ -27,9 +27,23 @@ const Navbar = () => {
         {auth.user && (
           <button
             onClick={() => alterMenu(!showMenu)}
-            className="user p-2 rounded-full px-3 hover:bg-slate-200"
+            className="user p-2 rounded-full px-3 hover:bg-slate-200 flex items-center space-x-2"
           >
             <img className="h-10" alt="userDP" src="../man.png" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
           </button>
         )}
 
@@ -42,7 +56,7 @@ const Navbar = () => {
                     initial={{ opacity: 0, scale: 0.5, x: 100, y: -50 }}
                     animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="absolute flex flex-col justify-center items-center w-1/2 md:w-1/4 right-5 md:right-10 top-20 md:top-24 p-4 md:p-8 rounded-lg bg-white text-slate-400 text-sm space-y-2"
+                    className="absolute flex flex-col justify-center items-center w-1/2 md:w-1/4 right-5 md:right-6 top-20 md:top-20 p-4 md:p-8 rounded-lg bg-white text-slate-400 text-sm space-y-2"
                   >
                     <button
                       onClick={() => {
