@@ -6,6 +6,7 @@ import CreatePost from './CreatePost';
 import Post from './Post';
 import UserDetails from './UserDetails';
 import Footer from './Footer';
+import Suggest from './Suggest';
 
 
 export {
@@ -17,4 +18,5 @@ export {
     Post,
     UserDetails,
     Footer,
+    Suggest,
 }

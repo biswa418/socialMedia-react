@@ -6,20 +6,20 @@ import {
   Post,
   UserDetails,
   Footer,
+  Suggest,
 } from "../components";
-import { Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useAuth, usePost } from "../hooks";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getPost } from "../api";
 import { useEffect, useState } from "react";
-import Suggest from "../components/Suggest";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const auth = useAuth();
   const posts = usePost();
   const [page, setPage] = useState(0);
-  const [scrollY, setScroll] = useState(0);
+  const [showScroll, setShowScroll] = useState(false);
   const [end, setEnd] = useState(true);
   const [Posts, setPosts] = useState(posts?.data);
   const [mobile, setMobile] = useState(true);
@@ -56,7 +56,11 @@ const Home = () => {
   };
 
   const handleScroll = () => {
-    setScroll(window.scrollY);
+    if (window.scrollY > 1000) {
+      setShowScroll(true);
+    } else {
+      setShowScroll(false);
+    }
   };
 
   useEffect(() => {
@@ -128,13 +132,15 @@ const Home = () => {
           {auth.user && !mobile && <FriendList mobile={false} />}
         </div>
 
-        {scrollY > 1000 && (
-          <button
+        {showScroll && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
             className="fixed flex top-24 text-sm bg-purple-300 text- p-3 px-5 rounded-full"
             onClick={() => {
-              document.body.scrollTop = 0; // For Safari
-              document.documentElement.scrollTop = 0;
-              setScroll(0);
+              window.scrollTo(0, 0);
+              setShowScroll(false);
             }}
           >
             Back to top
@@ -152,7 +158,7 @@ const Home = () => {
                 d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5"
               />
             </svg>
-          </button>
+          </motion.button>
         )}
         <Toaster position="top-right" reverseOrder={false} />
       </div>

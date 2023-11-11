@@ -5,6 +5,7 @@ import { createComment, toggleLike } from "../api";
 import { toast } from "react-hot-toast";
 import Comment from "./Comment";
 import { timeDiff } from "../utils";
+import { motion } from "framer-motion";
 
 const Post = ({ post }) => {
   const auth = useAuth();
@@ -33,7 +34,11 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className="rounded-md my-[20px] py-3 bg-white hover:cursor-pointer">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="rounded-md my-[20px] py-3 bg-white hover:cursor-pointer"
+    >
       <div className="p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center px-3">
@@ -135,7 +140,7 @@ const Post = ({ post }) => {
 
         <Comment comments={post?.comments} post={post} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
