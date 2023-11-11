@@ -19,7 +19,7 @@ const UserDetails = () => {
         <div className="z-10 mt-10 flex justify-center h-16 w-16 lg:h-20 lg:w-20 rounded-full p-1 bg-[#F3F5F7]">
           <div className="h-full w-full overflow-clip rounded-full bg-slate-200">
             <Link to={`/settings`}>
-              <img src="../man.png" />
+              <img src="../man.png" alt="profile_picture" />
             </Link>
           </div>
         </div>
