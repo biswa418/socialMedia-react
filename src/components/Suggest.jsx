@@ -12,7 +12,7 @@ const Suggest = (props) => {
   const container = {
     hidden: { height: "2.5rem" },
     show: {
-      height: "16rem",
+      height: "17rem",
     },
   };
 
@@ -42,7 +42,7 @@ const Suggest = (props) => {
         variants={container}
         initial={"show"}
         transition={{ type: "tween" }}
-        className="w-full max-h-96 max-w-[298px] overflow-clip overflow-y-scroll scrollbar-none rounded-md mt-[20px] bg-white p-2 md:p-4"
+        className="w-full max-h-screen max-w-[298px] overflow-clip overflow-y-scroll scrollbar-none rounded-md mt-[20px] bg-white p-2 md:p-4"
       >
         {/* fixed top-[368px] */}
         <div className="flex justify-between">

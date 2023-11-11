@@ -9,7 +9,7 @@ const Navbar = () => {
   const [showMenu, alterMenu] = useState(false);
 
   return (
-    <nav className="flex h-20 fixed top-0 w-full z-20 bg-white p-3 py-5 items-center justify-between">
+    <nav className="flex h-20 fixed top-0 w-full z-20 backdrop-blur-lg bg-white/10 p-3 py-5 items-center justify-between">
       <div className="leftDiv">
         <Link className="flex items-center justify-center" to="/home">
           <img

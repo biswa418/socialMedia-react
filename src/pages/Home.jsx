@@ -19,6 +19,7 @@ const Home = () => {
   const auth = useAuth();
   const posts = usePost();
   const [page, setPage] = useState(0);
+  const [scrollY, setScroll] = useState(0);
   const [end, setEnd] = useState(true);
   const [Posts, setPosts] = useState(posts?.data);
   const [mobile, setMobile] = useState(true);
@@ -54,6 +55,10 @@ const Home = () => {
     }
   };
 
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  };
+
   useEffect(() => {
     if (window.screen.width < 768) {
       setMobile(true);
@@ -61,9 +66,11 @@ const Home = () => {
       setMobile(false);
     }
     window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -120,6 +127,33 @@ const Home = () => {
           {auth.user && !mobile && <UserDetails mobile={false} />}
           {auth.user && !mobile && <FriendList mobile={false} />}
         </div>
+
+        {scrollY > 1000 && (
+          <button
+            className="fixed flex top-24 text-sm bg-purple-300 text- p-3 px-5 rounded-full"
+            onClick={() => {
+              document.body.scrollTop = 0; // For Safari
+              document.documentElement.scrollTop = 0;
+              setScroll(0);
+            }}
+          >
+            Back to top
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-4 h-4 ml-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5"
+              />
+            </svg>
+          </button>
+        )}
         <Toaster position="top-right" reverseOrder={false} />
       </div>
     </>
