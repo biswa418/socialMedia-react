@@ -11,10 +11,24 @@ body {
   margin: 0;
   margin-top: 5rem;
   min-width: 320px;
-  /* min-height: 100vh; */
+  /* min-height: 88vh; */
   position: relative;
   background-color: #F3F5F7;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 1rem;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: #f8f3f3
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(206, 161, 252);
+  border-radius: 1em;
+}​
 
 .newtons-cradle {
   --uib-size: 50px;

@@ -4,6 +4,8 @@ import Loader from './Loader';
 import FriendList from './FriendList';
 import CreatePost from './CreatePost';
 import Post from './Post';
+import UserDetails from './UserDetails';
+import Footer from './Footer';
 
 
 export {
@@ -12,5 +14,7 @@ export {
     Navbar,
     FriendList,
     CreatePost,
-    Post
+    Post,
+    UserDetails,
+    Footer,
 }

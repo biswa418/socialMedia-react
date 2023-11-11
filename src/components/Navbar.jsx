@@ -9,7 +9,7 @@ const Navbar = () => {
   const [showMenu, alterMenu] = useState(false);
 
   return (
-    <nav className="flex h-20 fixed top-0 w-full z-10 bg-white p-3 py-5 items-center justify-between">
+    <nav className="flex h-20 fixed top-0 w-full z-20 bg-white p-3 py-5 items-center justify-between">
       <div className="leftDiv">
         <Link className="flex items-center justify-center" to="/home">
           <img
@@ -128,7 +128,10 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="px-2 text-sm">
-                  <Link className="hover:underline" to="/register">
+                  <Link
+                    className="hover:bg-purple-600 transition-colors delay-100 text-white bg-purple-500 font-normal p-2 px-4 rounded-lg"
+                    to="/register"
+                  >
                     Sign up
                   </Link>
                 </li>

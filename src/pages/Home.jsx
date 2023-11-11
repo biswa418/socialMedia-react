@@ -1,5 +1,12 @@
 // import PropTypes from 'prop-types';
-import { Loader, FriendList, CreatePost, Post } from "../components";
+import {
+  Loader,
+  FriendList,
+  CreatePost,
+  Post,
+  UserDetails,
+  Footer,
+} from "../components";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth, usePost } from "../hooks";
@@ -78,8 +85,13 @@ const Home = () => {
         </a>
       </div>
 
-      <div className="flex justify-center mx-auto md:w-9/12 max-w-[907px] relative">
-        <div className="w-11/12 md:w-9/12 mx-1 max-w-[600px]">
+      <div className="flex justify-center mx-auto md:w-9/12 max-w-[950px] relative">
+        <div className="hidden md:block mx-1 md:w-3/12">
+          {auth.user && !mobile && <Suggest posts={Posts} />}
+
+          <Footer />
+        </div>
+        <div className="w-11/12 md:w-8/12 mx-1 max-w-[600px]">
           <InfiniteScroll
             dataLength={Posts?.length}
             next={() => callContent(page)}
@@ -94,7 +106,7 @@ const Home = () => {
                 <b>Yay! You have reached the end.</b>
               </p>
             }
-            className="md:px-5 mx-auto"
+            className="md:px-3 mx-auto"
           >
             {auth.user && <CreatePost />}
             {auth.user && mobile && <FriendList mobile={mobile} />}
@@ -103,9 +115,10 @@ const Home = () => {
             })}
           </InfiniteScroll>
         </div>
+
         <div className="hidden md:block mx-1 md:w-3/12">
+          {auth.user && !mobile && <UserDetails mobile={false} />}
           {auth.user && !mobile && <FriendList mobile={false} />}
-          {auth.user && !mobile && <Suggest posts={Posts} />}
         </div>
         <Toaster position="top-right" reverseOrder={false} />
       </div>
